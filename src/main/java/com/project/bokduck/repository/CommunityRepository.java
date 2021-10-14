@@ -28,13 +28,7 @@ public interface CommunityRepository extends JpaRepository<Community, Long> {
     Page<Community> findByPostContentContaining(String searchText, Pageable pageable);
 
 
- /**
-  * 맴버를 통해 커뮤니티 조회
-  * @Author MunKyoung
-  * @param writer
-  * @param pageable
-  * @return
-  */
+
     Page<Community> findAllByWriter(Member writer,Pageable pageable);
 
     
