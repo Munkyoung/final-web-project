@@ -459,34 +459,7 @@ public class MainController {
         return jsonObject.toString();
     }
 
-    @PostMapping("/id-search-result")
-    public String checkSms(@RequestParam String name, @RequestParam String tel,
-                           @RequestParam String num, HttpServletRequest request, Model model){
-        // 진짜 인증번호와 num 파라미터 비교
-        String message;
-        String realCerNum =(String)request.getSession().getAttribute("cerNum");
 
-        // 맞으면 ==>
-        if(num.equals(realCerNum)) {
-
-            //    가입된 연락처면  ==> model.addAttribute("message", "aaa@a.a") 로 회원 이메일 담음
-           if(memberService.containsTel(tel)) {
-               message = memberService.getEmail(tel);
-           } else {
-               message = "복덕복덕에 가입한 번호가 아닙니다.";
-           }
-        } else {
-
-            // 틀리면 ==>model.addAttribute("message", "인증번호가 잘못되었습니다.") 로 회원 이메일 담음
-            message = "인증번호가 잘못 되었습니다.";
-            model.addAttribute("message", message);
-        }
-
-
-        //    가입된 연락처면  ==> model.addAttribute("message", "aaa@a.a") 로 회원 이메일 담음
-        // 틀리면 ==>model.addAttribute("message", "인증번호가 잘못되었습니다.") 로 회원 이메일 담음
-        return "member/id-search-result";
-    }
 
     /**
      * 회원가입 완료 후 사용자가 입력한 이메일주소로 이메일을 보내 인증한다
